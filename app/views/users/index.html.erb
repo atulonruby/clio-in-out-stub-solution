@@ -1,0 +1,16 @@
+
+<p> 
+  <span class="name"> My status </span>
+  <span class="status status-<%=current_user.status%>"> <%= current_user.status %> </span>
+  <%= link_to("Edit", edit_user_path(current_user), :class => "update-link") %>
+</p>
+
+<div id="users-container">
+  <% @users.each do |user| %>
+    <p> 
+      <%= name_with_status(user) %>
+    </p>
+  <% end %>
+</div>
+
+<%= subscribe_to "/messages/new" %>

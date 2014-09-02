@@ -1,0 +1,8 @@
+<% publish_to "/messages/new" do %>
+	var id = "#users-container a[href='/users/<%= @user.id %>']";
+	var span = $(id).parent().children('span:first');
+	span.html("<%= @user.status%>");
+	span.toggleClass("status-in status-out");
+<% end %>
+
+

@@ -1,0 +1,31 @@
+<strong>Notice that, in the finished project, the IP addresses are stored as integers in the DB. What are the pros and cons of this approach, compared to storing the IP addresses as strings?</strong></br>
+
+<strong>Answer:</strong></br>
+ Integers take up more space in the db than strings. 
+ If we only store IPv4 address then 32-bit integer is a good idea but to support IPv6 string is better because it is easy to read and use.
+ 
+
+<strong>Are there any security issues present in the app itself? (No need to mention security vulnerabilities within external gems.) List any security issues you found, and how to fix them. Also list any potential security issues that you investigated which you believe the site to be free of.</strong></br>
+
+ In this application, we can see any users page by altering the id, like users/3 because the show action search the user class with params for if.We can prevent this by using authentication on the show action</br>
+
+Mass assignment:
+One of the major security issue is mass  assignment as params cannot be trusted.
+This can create security issues when we use update_attributes as it can update associations as well. 
+Using attr_protected or better still, attr_accessble is a good way to resolve it.</br>
+
+File Upload:
+If the server is running on apache server, then it can be very easy to update php script (e.g. as an file attachment). This can prevented by having proper validations.
+For file extension we can make sure that extension is not .php or disable script upload entirely for file upload.</br>
+
+ Password should not be passed as plain text but should always be encrypted even in the log files  which is covered here using Devise.</br>
+
+Password should contain a salt which is bascially random text generated and added to it. 
+So if one password is compromised, then other users having the same password wont be compromised as well.</br>
+
+ SQL INJECTION : If search option is added to this applicaiton that uses scopes, it is a good idea to prevent “Sql injection”. One solution is to use array with question marks instead of directly using values like [“names like ?”,”%#{params[:search]}%”]</br>
+
+HTML INJECTION : It is easy to be vulnerable to cross site scripting attacks in earlier versions of Rails, but Rails 3 solves this by automatically escaping unsafe input.
+
+--------------------------->
+PS: RUN rackup private_pub.ru -s thin -E production in console and rails s when trying to test Asynchronous updates of users because i have used thin to support ajax update on copies of application.

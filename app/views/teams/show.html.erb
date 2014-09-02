@@ -1,0 +1,17 @@
+<div>
+	Team Name: <%= @team.name %>
+	<%= link_to "Change Name",edit_team_path(@team)%>
+</div>
+
+<% if @team.users.empty?%>
+	"This team doesn't have any users in it. <%=link_to("Click here",manage_users_team_path(@team))%> to add users"</br>
+<% else %>
+	<b>List of Users in team: </b></br>
+	<% @team.users.each do |user|%>
+		<%= user.full_name%></br>
+	<% end %>
+	</br>
+	<%=link_to("Manage Users",manage_users_team_path(@team))%></br>
+<%end%>
+	<%=link_to("View All teams",teams_path)%>
+

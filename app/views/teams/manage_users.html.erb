@@ -1,0 +1,11 @@
+<b>Users in <%= @team.name.capitalize%></b></br>
+<div class="checklist">
+<% User.all.each do |user|%>
+  <%= check_box_tag '', user.id, @team.users.include?(user) ? true:false, :id =>  "#{dom_id(user)}"%>
+  <%= user.full_name%></br>
+ <% end %>
+</div>
+<div><%= link_to "View Team", team_path%></div>
+ <%= javascript_tag do %>
+ 	user_handler();
+ <% end %>

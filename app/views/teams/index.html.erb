@@ -1,0 +1,12 @@
+<p><b>Team list:</b></p>
+<% @teams.each do |team|%>
+		<span class="team-name"><%= team.name%></span>
+		<span class="team-links">
+			<%= link_to "Show", team_path(team)%>
+			<%= link_to "Edit", edit_team_path(team)%>
+			<%= link_to "Manage Users", manage_users_team_path(team)%>
+			<%= link_to "Delete",team_path(team), :method => :delete, :confirm => "Are you sure you want to delete this team"%></br>
+		</span>
+<% end%>
+
+<b><%= link_to "Create new Team",new_team_path%></b>
